@@ -1,0 +1,11 @@
+# Dados brutos e processados
+data/
+
+# Cache do Python
+__pycache__/
+*.pyc
+
+# Ambiente virtual (caso tenha)
+.venv/
+venv/
+.env
