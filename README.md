@@ -27,50 +27,67 @@ flowchart LR
     D -->|"@st.cache_data"| E[Dashboard Streamlit]
 ```
 
-Detalhamento das Camadas
-Bronze (Raw Data): Extração dos dados brutos em formato CSV utilizando requisições em streaming (requests.iter_content), evitando estouro de memória RAM e garantindo resiliência com fallback de URLs.
+### Detalhamento das Camadas
 
-Silver (Cleansing & Normalization): Padronização de cabeçalhos, tratamento de valores nulos, conversão defensiva de tipos de dados e salvamento otimizado em formato colunar Parquet.
 
-Gold (Analytics & Data Mart): Construção da tabela fato e visões agregadas semanais com indicadores calculados (FL_UTI, FL_OBITO, FL_VACINADO_COV) prontas para consumo de BI.
+- **Bronze (Raw Data): Extração dos dados brutos em formato CSV utilizando requisições em streaming (requests.iter_content), evitando estouro de memória RAM e garantindo resiliência com fallback de URLs.**
 
-📊 Visualizações do Dashboard
+- **Silver (Cleansing & Normalization): Padronização de cabeçalhos, tratamento de valores nulos, conversão defensiva de tipos de dados e salvamento otimizado em formato colunar Parquet.**
+
+- **Gold (Analytics & Data Mart): Construção da tabela fato e visões agregadas semanais com indicadores calculados (FL_UTI, FL_OBITO, FL_VACINADO_COV) prontas para consumo de BI.**
+
+### 📊 Visualizações do Dashboard
 O painel analítico interativo disponibiliza 4 visões estratégicas:
 
-📈 Tendência Temporal: Evolução semanal de notificações, internações em UTI e óbitos.
+### 📈 Tendência Temporal:
 
-👤 Perfil Demográfico & Risco: Análise demográfica por faixa etária vs. desfecho clínico.
+**Evolução semanal de notificações, internações em UTI e óbitos.**
 
-🦠 Vigilância Etiológica: Distribuição e relevância dos agentes etiológicos identificados (COVID-19, Influenza, etc.).
+### 👤 Perfil Demográfico & Risco:
 
-💉 Cobertura Vacinal: Relação entre o status de vacinação e o risco de evolução grave.
+**Análise demográfica por faixa etária vs. desfecho clínico.**
 
-🚀 Como Executar o Projeto
-Pré-requisitos
-Docker Desktop instalado e em execução.
+### 🦠 Vigilância Etiológica:
 
-Git configurado.
+**Distribuição e relevância dos agentes etiológicos identificados (COVID-19, Influenza, etc.).**
 
-1. Clonar o repositório
-Bash
-git clone [https://github.com/Emanuel085/sivep-gripe-etl-pipeline.git](https://github.com/Emanuel085/sivep-gripe-etl-pipeline.git)
-cd sivep-gripe-etl-pipeline
-2. Baixar os dados brutos (Camada Bronze)
-Baixe o arquivo CSV de dados de SRAG no portal do OpenDataSUS e salve-o em:
+### 💉 Cobertura Vacinal: 
 
-Plaintext
-data/1_bronze/sivep_gripe_raw.csv
-3. Rodar o pipeline ETL localmente
-Bash
-python src/transformation/clean_bronze.py
-python src/transformation/build_gold.py
-4. Subir a aplicação via Docker Compose
-Bash
-docker compose up --build
-Acesse o painel no seu navegador no endereço: http://localhost:8501
+**Relação entre o status de vacinação e o risco de evolução grave.**
 
-📂 Estrutura do Repositório
-Plaintext
+### 🚀 Como Executar o Projeto
+
+- **Pré-requisitos**
+- **Docker Desktop instalado e em execução.**
+
+- **1. Clonar o repositório**
+- **Bash**
+- **git clone [https://github.com/Emanuel085/sivep-gripe-etl-pipeline.git](https://github.com/Emanuel085/sivep-gripe-etl-pipeline.git)**
+- **cd sivep-gripe-etl-pipeline**
+
+
+**2. Baixar os dados brutos (Camada Bronze)**
+
+- **Baixe o arquivo CSV de dados de SRAG no portal do OpenDataSUS e salve-o em:**
+
+**data/1_bronze/sivep_gripe_raw.csv**
+
+
+**3. Rodar o pipeline ETL localmente**
+
+- **python src/transformation/clean_bronze.py**
+- **python src/transformation/build_gold.py**
+
+
+**4. Subir a aplicação via Docker Compose**
+
+- **docker compose up --build**
+- **Acesse o painel no seu navegador no endereço: http://localhost:8501**
+
+### 📂 Estrutura do Repositório
+
+
+```
 sivep-gripe-etl-pipeline/
 ├── app/
 │   └── dashboard.py          # Interface gráfica interativa (Streamlit + Plotly)
@@ -88,3 +105,4 @@ sivep-gripe-etl-pipeline/
 ├── docker-compose.yml        # Orquestração do container e montagem de volumes
 ├── Dockerfile                # Imagem base Python 3.12-slim
 └── requirements.txt          # Dependências do projeto
+```
