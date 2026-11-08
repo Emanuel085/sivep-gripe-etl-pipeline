@@ -26,7 +26,6 @@ flowchart LR
     C -->|Modelagem & Flag Metrics| D[(3_gold: fato_srag.parquet / agg_semanal.parquet)]
     D -->|"@st.cache_data"| E[Dashboard Streamlit]
 ```
-
 Detalhamento das Camadas
 Bronze (Raw Data): Extração dos dados brutos em formato CSV utilizando requisições em streaming (requests.iter_content), evitando estouro de memória RAM e garantindo resiliência com fallback de URLs.
 
