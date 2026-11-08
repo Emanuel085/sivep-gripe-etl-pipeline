@@ -24,7 +24,7 @@ flowchart LR
     A[OpenDataSUS / SIVEP-Gripe] -->|Streaming HTTP| B[(1_bronze: sivep_gripe_raw.csv)]
     B -->|Limpeza & Tipagem| C[(2_silver: sivep_gripe_cleaned.parquet)]
     C -->|Modelagem & Flag Metrics| D[(3_gold: fato_srag.parquet / agg_semanal.parquet)]
-    D -->|@st.cache_data| E[Dashboard Streamlit]
+    D -->|"@st.cache_data"| E[Dashboard Streamlit]
 ```
 
 
