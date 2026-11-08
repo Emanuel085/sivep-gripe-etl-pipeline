@@ -27,7 +27,7 @@ flowchart LR
     D -->|"@st.cache_data"| E[Dashboard Streamlit]
 ```
 
-### Detalhamento das Camadas
+## Detalhamento das Camadas
 
 
 - **Bronze (Raw Data): Extração dos dados brutos em formato CSV utilizando requisições em streaming (requests.iter_content), evitando estouro de memória RAM e garantindo resiliência com fallback de URLs.**
@@ -36,26 +36,26 @@ flowchart LR
 
 - **Gold (Analytics & Data Mart): Construção da tabela fato e visões agregadas semanais com indicadores calculados (FL_UTI, FL_OBITO, FL_VACINADO_COV) prontas para consumo de BI.**
 
-### 📊 Visualizações do Dashboard
+## 📊 Visualizações do Dashboard
 O painel analítico interativo disponibiliza 4 visões estratégicas:
 
-### 📈 Tendência Temporal:
+## 📈 Tendência Temporal:
 
 **Evolução semanal de notificações, internações em UTI e óbitos.**
 
-### 👤 Perfil Demográfico & Risco:
+## 👤 Perfil Demográfico & Risco:
 
 **Análise demográfica por faixa etária vs. desfecho clínico.**
 
-### 🦠 Vigilância Etiológica:
+## 🦠 Vigilância Etiológica:
 
 **Distribuição e relevância dos agentes etiológicos identificados (COVID-19, Influenza, etc.).**
 
-### 💉 Cobertura Vacinal: 
+## 💉 Cobertura Vacinal: 
 
 **Relação entre o status de vacinação e o risco de evolução grave.**
 
-### 🚀 Como Executar o Projeto
+## 🚀 Como Executar o Projeto
 
 - **Pré-requisitos**
 - **Docker Desktop instalado e em execução.**
@@ -84,7 +84,7 @@ O painel analítico interativo disponibiliza 4 visões estratégicas:
 - **docker compose up --build**
 - **Acesse o painel no seu navegador no endereço: http://localhost:8501**
 
-### 📂 Estrutura do Repositório
+## 📂 Estrutura do Repositório
 
 
 ```
