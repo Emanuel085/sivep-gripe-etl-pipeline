@@ -27,6 +27,7 @@ flowchart LR
     D -->|"@st.cache_data"| E[Dashboard Streamlit]
 Detalhamento das Camadas
 Bronze (Raw Data): Extração dos dados brutos em formato CSV utilizando requisições em streaming (requests.iter_content), evitando estouro de memória RAM e garantindo resiliência com fallback de URLs.
+```
 
 Silver (Cleansing & Normalization): Padronização de cabeçalhos, tratamento de valores nulos, conversão defensiva de tipos de dados e salvamento otimizado em formato colunar Parquet.
 
