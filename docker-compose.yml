@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  sivep-dashboard:
+    build: .
+    container_name: sivep_gripe_dashboard
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data
+    restart: always
