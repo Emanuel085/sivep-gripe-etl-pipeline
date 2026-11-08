@@ -1,31 +1,25 @@
-# 🏥 Pipeline Epidemiológico SRAG / SIVEP-Gripe (Arquitetura Medalhão)
+🏥 Pipeline Epidemiológico SRAG / SIVEP-Gripe (Arquitetura Medalhão)
+Pipeline de dados end-to-end para ingestão, tratamento, modelagem e visualização de dados públicos de Síndrome Respiratória Aguda Grave (SRAG) do OpenDataSUS, orquestrado via Docker.
 
-> Pipeline de dados *end-to-end* para ingestão, tratamento, modelagem e visualização de dados públicos de Síndrome Respiratória Aguda Grave (SRAG) do OpenDataSUS, orquestrado via Docker.
+📌 Visão Geral do Projeto
+Este projeto automatiza a coleta e o processamento de dados epidemiológicos públicos de saúde no Brasil. Utilizando a Arquitetura Medalhão (Bronze, Silver e Gold), os dados brutos de notificações de internamentos são transformados em um Data Mart otimizado em formato colunar (Parquet) e consumidos por um painel analítico interativo construído em Streamlit e Plotly.
 
----
+🛠️ Tecnologias Utilizadas
+Linguagem & Processamento: Python 3.12, Pandas, PyArrow
 
-## 📌 Visão Geral do Projeto
+Visualização & BI: Streamlit, Plotly
 
-Este projeto automatiza a coleta e o processamento de dados epidemiológicos públicos de saúde no Brasil. Utilizando a **Arquitetura Medalhão** (Bronze, Silver e Gold), os dados brutos de notificações de internamentos são transformados em um *Data Mart* otimizado em formato colunar (Parquet) e consumidos por um painel analítico interativo construído em Streamlit e Plotly.
+Orquestração & Isolamento: Docker, Docker Compose
 
-### 🛠️ Tecnologias Utilizadas
+Armazenamento: Apache Parquet, CSV
 
-- **Linguagem & Processamento:** Python 3.12, Pandas, PyArrow
-- **Visualização & BI:** Streamlit, Plotly
-- **Orquestração & Isolamento:** Docker, Docker Compose
-- **Armazenamento:** Apache Parquet, CSV
-
----
-
-## 🏗️ Arquitetura do Pipeline (Medalhão)
-
-```mermaid
+🏗️ Arquitetura do Pipeline (Medalhão)
+Snippet de código
 flowchart LR
     A[OpenDataSUS / SIVEP-Gripe] -->|Streaming HTTP| B[(1_bronze: sivep_gripe_raw.csv)]
     B -->|Limpeza & Tipagem| C[(2_silver: sivep_gripe_cleaned.parquet)]
     C -->|Modelagem & Flag Metrics| D[(3_gold: fato_srag.parquet / agg_semanal.parquet)]
     D -->|"@st.cache_data"| E[Dashboard Streamlit]
-```
 Detalhamento das Camadas
 Bronze (Raw Data): Extração dos dados brutos em formato CSV utilizando requisições em streaming (requests.iter_content), evitando estouro de memória RAM e garantindo resiliência com fallback de URLs.
 
@@ -52,7 +46,7 @@ Git configurado.
 
 1. Clonar o repositório
 Bash
-git clone [https://github.com/Emanuel085/sivep-gripe-etl-pipeline.git](https://github.com/Emanuel085/sivep-gripe-etl-pipeline.git)
+git clone https://github.com/Emanuel085/sivep-gripe-etl-pipeline.git
 cd sivep-gripe-etl-pipeline
 2. Baixar os dados brutos (Camada Bronze)
 Baixe o arquivo CSV de dados de SRAG no portal do OpenDataSUS e salve-o em:
